@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: generals-deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend:ro
+      - ./frontend:/app/frontend:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
