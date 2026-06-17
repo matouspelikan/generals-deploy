@@ -1,0 +1,5 @@
+# 15. Gaussovská a Laplaceovská pyramída obrazov
+
+**Gaussovská pyramida (GP)** je hierarchická reprezentace obrazu na **klesajících rozlišeních**. Každá vyšší úroveň se získá **Gaussovým vyhlazením + podvzorkováním** předchozí úrovně (typicky 2×): $G_{l}(i,j) = \sum_{m,n} w(m,n) G_{l-1}(2i+m, 2j+n)$. Tím dostaneme posloupnost $G_0$ (originál), $G_1, G_2, \ldots, G_n$ se stále hrubšími detaily. **Použití v CV:** template matching v různých škálách, multiscale detekce (SIFT/SURF), výpočet optického toku pro velké pohyby (LK pyramid), saliency (Itti model).
+
+**Laplaceovská pyramida (LP)** ukládá **rozdíly mezi sousedními úrovněmi GP**: $L_i = G_i - \text{expand}(G_{i+1})$, $L_n = G_n$. Každá úroveň obsahuje **frekvence ztracené při vyhlazení** — tedy LP je v podstatě **pásmově propustný rozklad**. Rekonstrukce: $G_i = L_i + \text{expand}(G_{i+1})$. **Použití:** **kombinace obrazů** (image blending na hranicích bez viditelných švů), **komprese** (LP koeficienty mají nízkou entropii), **úprava detailů** (multi-resolution editing). Klasická reference: Burt & Adelson, 1983.

@@ -1,0 +1,5 @@
+# 23. HOG deskriptor (Histogram of Oriented Gradients)
+
+**HOG** popisuje vzhled okolí bodu pomocí **distribuce orientací gradientů** v lokálních buňkách. **Algoritmus:** (1) **gradient** v každém pixelu (velikost a směr), (2) okolí se rozdělí na **buňky** (typicky 8 × 8 pixelů), v každé buňce se sestaví **histogram orientací** gradientů (typicky 9 košů pro 0°–180°), váhováno velikostí gradientu, (3) buňky se seskupí do **bloků** (např. 16 × 16) a histogram bloku se **normalizuje** (kompenzace lokálního kontrastu/osvětlení), (4) zřetězení normalizovaných bloků dá **finální HOG deskriptor** (pro obraz 128 × 64 px je výsledný vektor 3780 hodnot).
+
+**Použití:** **detekce chodců** (Dalal & Triggs 2005), obecně detekce objektů s charakteristickými hranami. HOG je **robustní** vůči malým změnám pozice, osvětlení a barvy (vzhledem k normalizaci bloků). **Souvislost se SIFT:** SIFT deskriptor je v podstatě HOG aplikovaný lokálně kolem bodu zájmu (16 × 16 okno, 4 × 4 buňky, 8 košů = 128 hodnot), s tou výjimkou, že SIFT okno před výpočtem **otáčí podle dominantní orientace** bodu (rotační invariance).

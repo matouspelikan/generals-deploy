@@ -1,0 +1,5 @@
+# 13. K-means
+
+**K-means** je nehierarchická shlukovací metoda, která rozdělí $N$ bodů do **$K$ shluků** tak, aby **minimalizovala vnitroshlukový rozptyl** (within sum of squares): $W = \sum_{k=1}^K \sum_{x_i \in C_k} \|x_i - m_k\|^2$, kde $m_k$ je těžiště $k$-tého shluku. **Algoritmus:** (1) náhodně rozmísti $K$ počátečních středů, (2) **přiřazení**: každý bod přiřaď k nejbližšímu středu $C(i) = \arg\min_k \|x_i - m_k\|^2$, (3) **update**: spočítej nové středy jako průměr přiřazených bodů $m_k = \frac{1}{N_k}\sum_{x_i \in C_k} x_i$, (4) opakuj 2–3 do konvergence (žádná změna nebo MSE < práh).
+
+**Použití v CV:** segmentace obrazu (clustering pixelů v RGB/Lab + pozice), **kvantování barev** (palety pomocí K-means), **bag of visual words** (klastrování deskriptorů do slovníku vizuálních slov), **clustering pro CBIR**. **Omezení:** konverguje, ale **ne nutně ke globálnímu optimu**; citlivý na **inicializaci** a **outliery**; tvoří jen **konvexní shluky**; vyžaduje předem znát $K$ (volí se např. metodou inflection point — sleduje se WSS pro různá $K$ a hledá zlom).

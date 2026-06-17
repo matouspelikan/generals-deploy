@@ -1,0 +1,5 @@
+# 19. Chyby šošoviek (aberrations)
+
+**Chromatická aberace** — index lomu čočky závisí na **vlnové délce** ($n(\lambda)$), takže různé barvy se lámou jinak. **Axiální** chromatická aberace: různé vlnové délky se ostří v různých vzdálenostech (modrá blíž, červená dál). **Laterální**: vlnové délky se sice ostří v rovině obrazu, ale **ne ve stejném bodě** → barevné lemy na hranách. Korekce: achromatické dublety (kombinace čoček různých skel).
+
+**Sférická aberace** — reálné čočky mají kulové (ne hyperbolické) povrchy, takže **paprsky z okraje čočky se neostří do stejného ohniska** jako paraxiální paprsky → rozmazání ve středu obrazu. Korekce: skupina čoček, asférické povrchy. **Radiální zkreslení (distortion)** — geometrické zkreslení obrazu: **pincushion** (poduškovité, okraje stažené) nebo **barrel** (soudkovité, okraje vyklopené). Korekce softwarem (kalibrace kamery). **Vignettingu** (ztmavení rohů) má tři příčiny: **přirozené** ($E = L \frac{\pi}{4}(d/f)^2 \cos^4\alpha$, klesá s úhlem dopadu), **optické** (paprsky blokované hranami čočkových elementů) a **mechanické** (chybná clona/sluneční clona).

@@ -1,0 +1,5 @@
+# 22. RANSAC
+
+**RANSAC (RANdom SAmple Consensus)** je iterativní metoda odhadu parametrů matematického modelu z **bodů zatížených outliery**. **Algoritmus:** (1) náhodně vyber **minimální podmnožinu** bodů (sample size $s$ — minimum nutné pro určení modelu, např. 2 pro přímku, 3 pro afinní transformaci, 4 pro homografii), (2) **spočítej parametry** modelu z této podmnožiny, (3) najdi **podporu (consensus set)** — všechny body ve specifikované **vzdálenosti** $t$ od modelu (inliery), (4) opakuj $N$ iterací, (5) **vítěz** je model s nejvíce podporovateli; volitelně přepočítej parametry z celé množiny inlierů.
+
+**Volba parametrů:** **práh vzdálenosti** $t$ se volí tak, aby např. 95 % inlierů model podporovalo (pro Gaussovský šum $\mathcal{N}(0,\sigma^2)$: $t^2 = 3{,}84\sigma^2$). **Počet iterací** $N$ se odvodí tak, aby s pravděpodobností $p$ alespoň jeden vzorek **neobsahoval outlier**: $N = \log(1-p) / \log(1 - (1-e)^s)$, kde $e$ je podíl outlierů. Protože $e$ obvykle neznáme, určuje se **adaptivně**. **Použití:** odhad geometrických transformací (panorama stitching, identifikace objektu z lokálních příznaků), 3D rekonstrukce, AR.

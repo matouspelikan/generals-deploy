@@ -1,0 +1,3 @@
+# 20. Pozadie scény pre určenie pohybu
+
+**Statický model** předpokládá, že referenční obraz $b(x,y)$ je **prázdná scéna bez objektů** (např. první snímek $f(x,y,t_0)$). **Dynamický model** se přizpůsobuje změnám: $b(x,y,t) = \varphi(\{f(x,y,t-n)\}_{n=1}^K)$, kde $\varphi$ je **průměr**, **medián** nebo **rekurzivní průměr** $M_t = \alpha I_{t-1} + (1-\alpha) M_{t-1}$. Pokročilejší přístup je **Gaussian Mixture Model (GMM, Adaptive Background Mixture Model)**, který modeluje každý pixel **směsí Gaussiánů** — zvládá pomalé objekty, **změny osvětlení** i opakující se pohyb pozadí (vlnící se listy).

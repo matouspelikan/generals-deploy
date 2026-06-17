@@ -1,0 +1,5 @@
+# 2. Houghova transformácia pre priamky ľubovoľného smeru
+
+**Houghova transformace** detekuje analyticky známé objekty (zejm. **přímky**) v obraze hran. Pro přímky se používá **polární parametrizace**, která zvládá i svislé čáry: $\rho = x \cos\theta + y \sin\theta$, kde $\rho$ je vzdálenost přímky od počátku a $\theta \in [0, \pi)$ úhel její normály. V **parametrickém prostoru** $(\rho, \theta)$ je každá přímka **bodem** a každý hranový bod obrazu odpovídá **sinusoidě** (množina všech přímek procházejících daným bodem).
+
+**Algoritmus:** (1) Detekuj hrany v obraze (např. Canny). (2) Akumulátor $A(\rho, \theta)$ se vynuluje. (3) Pro každý hranový pixel $(x, y)$ a každé $\theta$ v diskrétní mřížce spočítej $\rho = x\cos\theta + y\sin\theta$ a inkrementuj $A(\rho, \theta)$. (4) Najdi **lokální maxima** v akumulátoru — odpovídají přímkám. Houghova transformace je **robustní vůči zákrytům a šumu**, protože každý bod hlasuje samostatně. Dá se zobecnit i pro kružnice (3 parametry) a obecné křivky (Generalized Hough Transform).

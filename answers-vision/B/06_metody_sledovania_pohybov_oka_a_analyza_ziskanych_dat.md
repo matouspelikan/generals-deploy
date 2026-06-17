@@ -1,0 +1,5 @@
+# 6. Metódy sledovania pohybov oka a analýza získaných dát
+
+**Metody eyetrackingu:** (1) **Elektronické** — elektrody na kůži kolem oka měří potenciálové změny (elektrookulografie); špatná přesnost, vhodné pro neurologickou diagnostiku. (2) **Mechanické** — speciální kontaktní čočky s cívkou v magnetickém poli; velmi přesné, ale nepohodlné. (3) **Single-point video** — software sleduje **jeden objekt** (zornici nebo duhovku), vyžaduje kalibraci. (4) **Two-point video** — sleduje **zornici + odraz na rohovce** (typicky první Purkyňův obraz) pomocí IR osvětlení; poloha odrazu vůči zornici určuje **směr pohledu**. Parametry: přesnost ~1°, prostorové rozlišení 0,03–0,2°, časové rozlišení 30–500 Hz.
+
+**Analýza dat:** surová data jsou nepoužitelná, je třeba je rozdělit na **fixace** (perioda relativní stability, 120–1000 ms) a **sakády** (skoky 40–120 ms). Algoritmus **I-VT** počítá rychlost mezi body — pokud je pod prahem (typicky 20°/s), jde o fixaci, jinak sakádu; po sloučení dá těžiště fixace. Algoritmus **I-DT** udržuje okno délky $\sim$100–200 ms a kontroluje, zda **rozptyl** bodů zůstává pod prahem (0,5°–1° zorného úhlu); pokud ano, jde o fixaci.

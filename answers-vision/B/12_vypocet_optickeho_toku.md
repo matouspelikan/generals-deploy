@@ -1,0 +1,5 @@
+# 12. Výpočet optického toku
+
+**Optický tok** je zdánlivý pohyb oblastí stejné intenzity v obraze. Z předpokladu **konstantní intenzity bodu v čase** se derivací řetězcovým pravidlem získá **brightness constancy equation**: $f_x u + f_y v + f_t = 0$, kde $(u,v) = (dx/dt, dy/dt)$ je optický tok a $f_x, f_y, f_t$ jsou parciální derivace obrazu. To je **1 rovnice o 2 neznámých** — neumíme určit složku **kolmou na gradient** (tzv. **aperture problem**).
+
+Řešení vyžaduje další předpoklady. **Lucas–Kanade** předpokládá, že pixely v 3 × 3 okně se pohybují společně → 9 rovnic, 2 neznámé, řešeno **metodou nejmenších čtverců** $\mathbf{d} = (\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\mathbf{b}$, kde $\mathbf{A}^T\mathbf{A}$ je sumační matice gradientů (řešitelná, když má obě vlastní čísla velká — tedy v rozích). **Horn–Schunck** místo toho přidává globální **podmínku hladkosti** $e = e_s + \lambda e_c$, kde $e_s = \iint (u_x^2 + u_y^2 + v_x^2 + v_y^2)$ a $e_c = \iint (f_x u + f_y v + f_t)^2$. Pro **velké pohyby** se používá **pyramidální výpočet** (LK na hrubé škále → warp → upsample → LK na jemnější škále) a **iterativní vylepšení** $d_{i+1} = d_i + \hat{d}$.

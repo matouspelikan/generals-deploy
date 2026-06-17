@@ -1,0 +1,5 @@
+# 24. Bag of Visual Words (BoVW)
+
+**BoVW** je metoda reprezentace obrazu inspirovaná **bag-of-words** v textovém vyhledávání. **Algoritmus:** (1) v každém obrazu z databáze najdi **lokální příznaky** (SIFT/SURF detektor + deskriptor), (2) z velkého množství deskriptorů ze všech obrazů vytvoř **slovník vizuálních slov** **klastrováním** (typicky K-means) — středy shluků = **vizuální slova**, (3) **kvantuj** každý deskriptor — přiřaď ho nejbližšímu vizuálnímu slovu ze slovníku, (4) reprezentuj obraz **histogramem výskytů vizuálních slov** ve slovníku (frekvenční vektor délky $K$).
+
+(5) Histogram je vstup do **klasifikátoru** (SVM, naivní Bayes, rozhodovací stromy, neuronové sítě), který předpoví třídu obrazu. **Použití:** klasifikace scén, kategorií objektů, CBIR. **Výhody:** kompaktní reprezentace s pevnou délkou nezávislou na počtu detekovaných bodů; **invariance** vůči pozici objektu (histogram nezachycuje prostorové uspořádání). **Nevýhoda:** ztráta prostorové informace — řeší se rozšířeními jako **Spatial Pyramid Matching**, které dělí obraz na regiony a počítá histogramy zvlášť. Reference: Sivic & Zisserman, ICCV 2003.

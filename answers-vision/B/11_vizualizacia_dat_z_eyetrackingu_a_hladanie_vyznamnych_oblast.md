@@ -1,0 +1,5 @@
+# 11. Vizualizácia dát z eyetrackingu a hľadanie významných oblastí v obraze
+
+**Vizualizace eyetrackingu** (viz otázka 7): **heatmapa** zobrazuje hustotu fixací jako 2D pravděpodobnostní hustotu (Gaussian blur kolem bodů fixací), porovnává se **Kullback–Leiblerovou divergencí**; **gaze trajectory** ukazuje sekvenci fixací jako kružnice (poloměr = délka fixace) spojené úsečkami (sakády).
+
+**Hledání významných oblastí (saliency)** — **Ittiho model** je biologicky inspirovaný bottom-up model: vstupní obraz se rozloží do **3 paralelních kanálů** (intenzita, barva, orientace), v každém se spočítají **Gaussovské/Gaborovy pyramidy** a **center-surround rozdíly** mezi škálami (inspirace ON-/OFF-center ganglionovými buňkami). Vzniká **42 map** (6 intenzita + 12 barva + 24 orientace) s $c \in \{2,3,4\}$ a $s = c + d$, $d \in \{3,4\}$. Mapy se **normalizují** ($\mathcal{N}(\cdot)$: namapuj na $[0,M]$, $\bar{m}$ = průměr lokálních maxim, vynásob $(M-\bar{m})^2$), sloučí do 3 **conspicuity maps** a finální **saliency map (SM)**. Nad SM běží **winner-take-all** síť + **inhibition of return**, která generuje sekvenci ohnisek pozornosti.

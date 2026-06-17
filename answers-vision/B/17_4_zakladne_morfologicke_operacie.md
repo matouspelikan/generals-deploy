@@ -1,0 +1,5 @@
+# 17. 4 základné morfologické operácie ⊕ ⊖ ∘ •
+
+**Dilatace** $A \oplus E$: pro každý bod struktury $A$ se „nakreslí" strukturní element $E$ → množina se **zvětší**, vyplní díry a zálivy do velikosti $E$. Formálně $A \oplus E = \bigcup_{e \in E} A_e$ (Minkowského součet). **Eroze** $A \ominus E$: opačně, $A \ominus E = \bigcap_{e \in E} A_{-e}$ — množina se **zmenší**, odstraní struktury menší než $E$, může objekt rozdělit. Dilatace a eroze nejsou inverzní, ale jsou **duální** vzhledem ke komplementu: $(A \ominus E)^C = A^C \oplus \hat{E}$.
+
+**Otevření** $A \circ E = (A \ominus E) \oplus E$ — eroze následovaná dilatací: **vyhladí obrysy**, **přeruší tenké propojky**, odstraní tenké výběžky a malé objekty, přitom zachová přibližně velikost zbylých objektů. **Uzavření** $A \bullet E = (A \oplus E) \ominus E$ — dilatace následovaná erozí: **vyhladí obrysy**, **propojí blízké oblasti**, **vyplní malé díry a tenké zálivy**. Opening a closing jsou **idempotentní** (opakování nemění výsledek) a duální vůči komplementu. Pro šedotónové obrazy se dilatace nahradí $\max$ a eroze $\min$.

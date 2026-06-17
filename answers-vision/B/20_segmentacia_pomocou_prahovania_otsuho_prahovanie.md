@@ -1,0 +1,5 @@
+# 20. Segmentácia pomocou prahovania. Otsuho prahovanie
+
+**Prahování (thresholding)** je nejjednodušší segmentační metoda: mapuje vstupní obraz $f(i,j)$ na binární obraz $g(i,j)$ podle prahu $T$: $g = 1$ pokud $f \geq T$ (objekt), jinak 0 (pozadí). **Globální** prahování používá jeden $T$ na celý obraz (vhodné pro bimodální histogramy); **lokální** počítá $T_w$ samostatně v každém okně (např. když není histogram bimodální v celku); **adaptivní (dynamické)** používá $T(x,y)$ závislé na poloze (např. Niblack: $T = M + (k \cdot \text{std} + d)$, kde $M$ je lokální průměr a std rozptyl — pro binarizaci skenovaných dokumentů).
+
+**Otsuho metoda** najde **optimální globální práh** automaticky tak, že **maximalizuje mezitřídní rozptyl** (= minimalizuje vnitrotřídní rozptyl). Pro každou hodnotu prahu $t$ se rozdělí pixely na třídu 0 (pozadí, hodnoty $< t$) s pravděpodobností $P_0(t)$ a průměrem $\mu_0(t)$, a třídu 1 (objekt) s $P_1(t), \mu_1(t)$. Mezitřídní rozptyl: $\sigma_b^2(t) = P_0(t) P_1(t) [\mu_0(t) - \mu_1(t)]^2$. Otsuho práh je $t^* = \arg\max_t \sigma_b^2(t)$. Výhoda: nemá žádné ladící parametry, předpokládá ale bimodální histogram.

@@ -1,0 +1,5 @@
+# 5. Postup detekcie tvárí pomocou Gaussiánov. Boosting
+
+Metoda Sunga & Poggia (1998) modeluje **prostor obličejů a ne-obličejů Gaussovskými směsmi**. Vstupní okno (např. 19 × 19 px) je vektor v 283-dim prostoru. Trénovací data se **shlukují do 6 + 6 shluků** (faces / non-faces), každý je modelován Gaussiánem. Pro každý nový vzorek $\mathbf{x}$ se počítají **vzdálenosti od všech 12 shluků**, a to ve dvou složkách: $D_1$ (Mahalanobisova vzdálenost v 75-dim PCA podprostoru) a $D_2$ (kolmá vzdálenost od podprostoru). Tím se z $\mathbf{x}$ získá **24-dim vektor příznaků** (12 × 2), který klasifikuje **neuronová síť**.
+
+**Boosting** lze zařadit do trénovací smyčky pro **iterativní vylepšení** klasifikátoru: (1) trénuj na malé množině PE + NE, (2) klasifikuj náhodné obrazy bez obličejů, (3) **falešně pozitivní** přidej do NE jako „hard negatives", (4) přetrénuj. Tím se klasifikátor postupně učí těžší případy a přesnost výrazně roste. Obecně **AdaBoost** kombinuje slabé klasifikátory s váhami $\alpha_t$ a v každé iteraci **zvyšuje váhu** špatně klasifikovaných vzorků — výsledný silný klasifikátor je vážená lineární kombinace slabých.

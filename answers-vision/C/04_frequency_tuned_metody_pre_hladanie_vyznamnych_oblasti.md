@@ -1,0 +1,3 @@
+# 4. Frequency-tuned metódy pre hľadanie významných oblastí
+
+**Frequency-tuned method** (Achanta et al.) počítá saliency v Lab prostoru jako rozdíl mezi **průměrnou barvou obrazu** $I_\mu$ a **Gaussovsky vyhlazeným obrazem** $I_{hc}$: $S(x,y) = \|I_\mu - I_{hc}(x,y)\|$, kde $\omega_{hc}$ je horní mezní frekvence. **Multiscale frequency-tuned method** zobecňuje na více měřítek: pro každé $S \in \{h/8, h/4, h/2\}$ se počítá lokální kontrast $c^S(i,j) = \|v_1(i,j) - v_2^S(i,j)\|$ jako rozdíl průměrných barev malého $R_1$ (1×1) a velkého okolí $R_2^S$, a výsledná mapa je $SM(i,j) = \sum_S c^S(i,j)$.

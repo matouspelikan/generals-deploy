@@ -1,0 +1,5 @@
+# 18. Hĺbka ostrosti, circle of confusion, ohnisková vzdialenosť. Čo ovplyvňuje DoF?
+
+**Ohnisková vzdálenost (focal length)** $f$ je vzdálenost mezi optickým středem čočky a obrazovým ohniskem — tj. bodem, kde se sbíhají rovnoběžné paprsky přicházející z nekonečna. Vztah mezi vzdáleností objektu $a$, vzdáleností obrazu $a'$ a $f$ je dán **rovnicí tenké čočky**: $\frac{1}{a} + \frac{1}{a'} = \frac{1}{f}$. **Circle of confusion (CoC)** je kroužek, který vznikne na obrazovém senzoru z bodu, který **není v rovině ostrosti** — místo bodového obrazu vznikne malá kružnice. Pokud je CoC menší než velikost pixelu (resp. rozlišovací limit oka/senzoru), bod se stále jeví ostrý.
+
+**Hloubka ostrosti (Depth of Field, DoF)** je **rozsah vzdáleností**, ve kterém je CoC dostatečně malý, aby se objekty jevily ostře. DoF ovlivňují **tři parametry**: (1) **clona (aperture)** — čím **menší clona** (větší clonové číslo $f/D$), tím **větší DoF**; (2) **ohnisková vzdálenost** $f$ — čím **delší $f$** (teleobjektiv), tím **menší DoF**; (3) **vzdálenost objektu** — čím **dál** je objekt, tím **větší DoF**. Malá DoF se používá pro portréty (rozmazané pozadí), velká DoF pro krajinu.

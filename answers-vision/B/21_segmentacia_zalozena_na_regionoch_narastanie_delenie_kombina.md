@@ -1,0 +1,5 @@
+# 21. Segmentácia založená na regiónoch — narastanie, delenie, kombinácia
+
+**Region growing (narůstání)** začíná z malých homogenních **semínek** (jádra, oversegmentation) a postupně k nim přidává sousední pixely, pokud splňují **kritérium homogenity** (např. rozdíl jasů pod prahem). Metody se liší volbou semínek a kritériem sloučení (např. „pokud významná část společné hranice jsou slabé hrany"). Výsledek závisí na **pořadí sloučení**. Vhodné, když známe počáteční oblasti zájmu.
+
+**Region splitting (dělení)** funguje opačně: začíná s celým obrazem jako jednou oblastí a **rekurzivně dělí** nehomogenní regiony (typicky na 4 podčtverce — **segmentační quadtree**), dokud každá oblast nesplňuje predikát homogenity $Q(R_k)$. **Split-and-merge** kombinuje oba přístupy: (1) inicializuj segmentaci a kritérium $Q$, (2) pokud region není homogenní, **rozděl** ho na 4 podregiony; pokud lze sourozenecké regiony **sloučit**, sluč je; (3) procházej i nesourozenecké sousední regiony a slučuj, pokud lze. Tento přístup spojuje **shora-dolů** (split) a **zdola-nahoru** (merge) a respektuje hierarchickou datovou strukturu.

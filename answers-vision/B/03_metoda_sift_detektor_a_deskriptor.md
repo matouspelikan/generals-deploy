@@ -1,0 +1,5 @@
+# 3. Metóda SIFT (detektor a deskriptor)
+
+**SIFT detektor** hledá body zájmu jako **lokální extrémy v DoG prostoru** (Difference of Gaussians, aproximace LoG): $D(x,y,\sigma) = G(k\sigma)*I - G(\sigma)*I$. Bod je extrémem v **26-okolí** (8 sousedů ve stejné škále + 9 + 9 v sousedních) — to zajistí **škálovou invariantnost**. Slabé body se odstraní: nízkokontrastní prahem na $|D|$, hranové pomocí Hessovy matice a testu $(r+1)^2/r$ kde $r = \lambda_1/\lambda_2$. Každému bodu se přiřadí **dominantní orientace** podle histogramu gradientů v okolí (rotační invariantnost).
+
+**SIFT deskriptor** používá přístup **HOG**: okno **16 × 16** kolem bodu, otočené podle dominantní orientace, se rozdělí na **4 × 4 buňky** po 4 × 4 pixelech, v každé se sestaví **histogram s 8 koši** orientací gradientů. Příspěvky se vážou **Gaussovou váhou** se $\sigma = 1{,}5 \cdot \text{scale}$. Výsledný vektor: $4 \times 4 \times 8 = \mathbf{128}$ hodnot. Je škálově i rotačně invariantní a díky normalizaci HOG bloku robustní vůči osvětlení (Lowe, IJCV 2004).

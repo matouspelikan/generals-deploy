@@ -1,0 +1,5 @@
+# 10. Hľadanie objektov pomocou prikladania šablón (template matching)
+
+**Template matching** posouvá šablonu $g$ velikosti $P \times Q$ přes celý obraz $f$ velikosti $M \times N$ a pro každou pozici vyhodnocuje **míru podobnosti** — pozice s nejvyšší odezvou je detekce. Možné metriky: **korelace** $h(m,n) = \sum_{k,l} g(k,l) f(m+k, n+l)$ (rychlá, ale násobí intenzity, špatné výsledky); **korelace s nulovým průměrem** (eliminuje DC složku); **SSD** $\sum [g - f]^2$ (citlivá na změnu jasu); **normalizovaná korelace** — nejpomalejší, ale **invariantní vůči změně kontrastu i jasu** (standardní volba). Složitost je $O(MNPQ)$, ještě hůř pokud neznáme škálu šablony.
+
+Pro nalezení objektů **v různých velikostech** se používá **Gaussovská pyramida**: hledání začíná na **nejhrubší úrovni** (kandidátní oblasti), poté se zpřesňuje jen v okolí kandidátů na jemnějších úrovních. Tím se výpočet výrazně urychlí. Template matching dobře funguje, pokud známe **přesný vzhled** objektu — je citlivý na rotaci, deformaci, zákryt; pro takové případy se používají raději lokální příznaky (SIFT/SURF).
