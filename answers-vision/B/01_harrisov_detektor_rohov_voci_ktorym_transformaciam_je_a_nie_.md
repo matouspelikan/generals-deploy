@@ -1,5 +1,11 @@
 # 1. Harrisov detektor rohov. Voči ktorým transformáciám je a nie je invariantný. Prečo?
 
-**Harris detektor** hledá rohy jako body s **vysokou autokorelační odchylkou v každém směru**. Pro okno kolem bodu se sestaví matice druhých momentů gradientů $A = \sum_i w(\mathbf{p}_i) \begin{pmatrix} I_x^2 & I_x I_y \\\\ I_x I_y & I_y^2 \end{pmatrix}$ (po vyhlazení Gaussem). **Vlastní čísla** $\lambda_1, \lambda_2$ matice $A$ charakterizují bod: oba malé = plochá oblast, jedno velké = hrana, **oba velké a podobné** = roh. Detektor vyhodnocuje **odezvovou funkci** $R = \det A - \alpha (\mathrm{tr}\, A)^2 = \lambda_1\lambda_2 - \alpha(\lambda_1+\lambda_2)^2$ (typicky $\alpha = 0{,}04$–$0{,}06$), kde $R > 0$ značí roh. Body se získají prahováním $R$ a potlačením nemaxim.
+**Harris detektor** hledá rohy jako body s **vysokou autokorelační odchylkou v každém směru**. Pro okno kolem bodu se sestaví matice druhých momentů gradientů (po vyhlazení Gaussem):
+
+$$
+A = \sum_i w(\mathbf{p}_i) \begin{pmatrix} I_x^2 & I_x I_y \\ I_x I_y & I_y^2 \end{pmatrix}
+$$
+
+**Vlastní čísla** $\lambda_1, \lambda_2$ matice $A$ charakterizují bod: oba malé = plochá oblast, jedno velké = hrana, **oba velké a podobné** = roh. Detektor vyhodnocuje **odezvovou funkci** $R = \det A - \alpha (\mathrm{tr}\, A)^2 = \lambda_1\lambda_2 - \alpha(\lambda_1+\lambda_2)^2$ (typicky $\alpha = 0{,}04$–$0{,}06$), kde $R > 0$ značí roh. Body se získají prahováním $R$ a potlačením nemaxim.
 
 **Invariance:** Harris **je invariantní** vůči **rotaci** (vlastní čísla nezávisí na orientaci) a vůči **posunu jasu** $I \to I + b$ (používáme derivace, posun se vynuluje). **Není invariantní** vůči **změně škály** — pro velký roh ve velkém zoomu se objeví spousta lokálních „hran" místo jediného rohu (proto se používá SIFT/SURF s vícescálovým prostorem). Vůči **změně kontrastu** $I \to aI$ je odezva škálována $a^2$, takže prahování přestane fungovat, pokud se kontrast hodně liší — tedy částečná invariance.

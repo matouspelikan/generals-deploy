@@ -1,5 +1,9 @@
 # 26. Lucas-Kanade metóda na výpočet optického toku
 
-Z **brightness constancy** plyne základní rovnice OF: $f_x u + f_y v + f_t = 0$ — 1 rovnice o 2 neznámých, aperture problem. **Lucas–Kanade** přidává předpoklad, že **sousední pixely se pohybují stejně**, a v okně 3 × 3 (= 9 pixelů) získá **9 rovnic o 2 neznámých**. To je přeurčená soustava $\mathbf{A}\mathbf{d} = \mathbf{b}$ s $\mathbf{A} \in \mathbb{R}^{9\times 2}$, řešená metodou **nejmenších čtverců**: $\mathbf{d} = (\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\mathbf{b}$, kde $\mathbf{A}^T\mathbf{A} = \begin{pmatrix} \sum f_x^2 & \sum f_x f_y \\\\ \sum f_x f_y & \sum f_y^2 \end{pmatrix}$.
+Z **brightness constancy** plyne základní rovnice OF: $f_x u + f_y v + f_t = 0$ — 1 rovnice o 2 neznámých, aperture problem. **Lucas–Kanade** přidává předpoklad, že **sousední pixely se pohybují stejně**, a v okně 3 × 3 (= 9 pixelů) získá **9 rovnic o 2 neznámých**. To je přeurčená soustava $\mathbf{A}\mathbf{d} = \mathbf{b}$ s $\mathbf{A} \in \mathbb{R}^{9\times 2}$, řešená metodou **nejmenších čtverců**: $\mathbf{d} = (\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\mathbf{b}$, kde
+
+$$
+\mathbf{A}^T\mathbf{A} = \begin{pmatrix} \sum f_x^2 & \sum f_x f_y \\ \sum f_x f_y & \sum f_y^2 \end{pmatrix}.
+$$
 
 **Řešitelnost:** matice $\mathbf{A}^T\mathbf{A}$ musí být **invertibilní** — obě vlastní čísla $\lambda_1, \lambda_2 \gg 0$ a $\lambda_1 \sim \lambda_2$, tedy typicky **v rozích**. Na hranách $\lambda_1 \gg \lambda_2$ (aperture problem zůstává), v plochých oblastech jsou obě malá. **Možné chyby:** selhání předpokladů — (1) konstantní intenzita (změna osvětlení), (2) společný pohyb v okně (hranice objektů), (3) malý pohyb. Pro velké pohyby se používá **iterativní vylepšení** (warp + opakování) a **pyramidální výpočet** (LK od hrubé škály k jemné).
